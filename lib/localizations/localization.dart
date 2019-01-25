@@ -48,6 +48,41 @@ class ArchSampleLocalizations {
     args: [],
     locale: locale.toString(),
   );
+
+  String get tiret => Intl.message(
+    ' - ',
+    name: 'tiret',
+    args: [],
+    locale: locale.toString(),
+  );
+
+  String get quartTemps => Intl.message(
+    'Quart-temps',
+    name: 'quartTemps',
+    args: [],
+    locale: locale.toString(),
+  );
+
+  String get duree => Intl.message(
+    'Durée',
+    name: 'duree',
+    args: [],
+    locale: locale.toString(),
+  );
+
+  String get terminee => Intl.message(
+    'Terminée',
+    name: 'terminee',
+    args: [],
+    locale: locale.toString(),
+  );
+
+  String get enCours => Intl.message(
+    'En cours',
+    name: 'enCours',
+    args: [],
+    locale: locale.toString(),
+  );
 }
 
 class ArchSampleLocalizationsDelegate

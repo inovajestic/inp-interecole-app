@@ -6,6 +6,10 @@ import 'package:rxdart/rxdart.dart';
 import 'package:inp_interecole/keys.dart';
 import 'package:inp_interecole/interecole.dart';
 import 'package:inp_interecole/localization.dart';
+import 'package:inp_interecole/widgets/basketball_list.dart';
+import 'package:inp_interecole/widgets/football_list.dart';
+import 'package:inp_interecole/widgets/volleyball.dart';
+import 'package:inp_interecole/widgets/handball.dart';
 
 enum TabsDemoStyle {
   iconsAndText,
@@ -14,16 +18,17 @@ enum TabsDemoStyle {
 }
 
 class _Page {
-  const _Page({this.text});
+  const _Page({this.text, this.key});
   final String text;
+  final Key key;
 }
 
 //TODO: use localization instead
 List<_Page> _allPages = <_Page>[
-  _Page(text: 'FOOTBALL'),
-  _Page(text: 'BASKETBALL'),
-  _Page(text: 'VOLLEYBALL'),
-  _Page(text: 'HANDBALL')
+  _Page(key: ArchSampleKeys.football, text: 'FOOTBALL'),
+  _Page(key: ArchSampleKeys.basketball, text: 'BASKETBALL'),
+  _Page(key: ArchSampleKeys.volleyball, text: 'VOLLEYBALL'),
+  _Page(key: ArchSampleKeys.handball, text: 'HANDBALL')
 ];
 
 class HomeScreen extends StatefulWidget {
@@ -40,6 +45,7 @@ class HomeScreenState extends State<HomeScreen>
   TabController _controller;
   TabsDemoStyle _demoStyle = TabsDemoStyle.textOnly;
   bool _customIndicator = false;
+  Key _defaultTabKey = ArchSampleKeys.football;
 
   @override
   void initState() {
@@ -125,18 +131,14 @@ class HomeScreenState extends State<HomeScreen>
       body: TabBarView(
           controller: _controller,
           children: _allPages.map<Widget>((_Page page) {
-            return SafeArea(
-              top: false,
-              bottom: false,
-              child: Container(
-                padding: const EdgeInsets.all(12.0),
-                child: Card(
-                  child: Center(
-                    child: Icon(Icons.settings_input_component),
-                  ),
-                ),
-              ),
-            );
+            if (page.key == ArchSampleKeys.football)
+              return new FootballList(key: ArchSampleKeys.football);
+            else if (page.key == ArchSampleKeys.basketball)
+              return new BasketballList(key: ArchSampleKeys.basketball);
+            else if (page.key == ArchSampleKeys.volleyball)
+              return new Volleyball(key: ArchSampleKeys.volleyball);
+            else if (page.key == ArchSampleKeys.handball)
+              return new Handball(key: ArchSampleKeys.handball);
           }).toList()),
     );
   }
