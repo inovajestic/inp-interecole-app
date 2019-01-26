@@ -8,8 +8,8 @@ import 'package:inp_interecole/interecole.dart';
 import 'package:inp_interecole/localization.dart';
 import 'package:inp_interecole/widgets/basketball_list.dart';
 import 'package:inp_interecole/widgets/football_list.dart';
-import 'package:inp_interecole/widgets/volleyball.dart';
-import 'package:inp_interecole/widgets/handball.dart';
+import 'package:inp_interecole/widgets/volleyball_list.dart';
+import 'package:inp_interecole/widgets/handball_list.dart';
 
 enum TabsDemoStyle {
   iconsAndText,
@@ -116,6 +116,8 @@ class HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(BlocLocalizations.of(context).appTitle),
@@ -127,6 +129,16 @@ class HomeScreenState extends State<HomeScreen>
             return Tab(text: page.text);
           }).toList(),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.help,
+                semanticLabel: ArchSampleLocalizations.of(context).about,
+                color: Colors.white),
+            onPressed: () {
+              Navigator.pushNamed(context, ArchSampleRoutes.about);
+            },
+          )
+        ],
       ),
       body: TabBarView(
           controller: _controller,
@@ -136,9 +148,9 @@ class HomeScreenState extends State<HomeScreen>
             else if (page.key == ArchSampleKeys.basketball)
               return new BasketballList(key: ArchSampleKeys.basketball);
             else if (page.key == ArchSampleKeys.volleyball)
-              return new Volleyball(key: ArchSampleKeys.volleyball);
+              return new VolleyballList(key: ArchSampleKeys.volleyball);
             else if (page.key == ArchSampleKeys.handball)
-              return new Handball(key: ArchSampleKeys.handball);
+              return new HandballList(key: ArchSampleKeys.handball);
           }).toList()),
     );
   }

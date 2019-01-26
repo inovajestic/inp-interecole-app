@@ -81,7 +81,7 @@ class BasketballItem extends StatelessWidget {
                           children: <Widget>[
                             Expanded(
                               flex: 1,
-                              child: Column(
+                              child: this.rencontre.enCours || this.rencontre.estTerminee ? Column(
                                 children: <Widget>[
                                   Text(
                                     this.rencontre.scoreDomicile.toString(),
@@ -90,6 +90,12 @@ class BasketballItem extends StatelessWidget {
                                   Text(this.rencontre.domicile,
                                       style: theme.textTheme.title
                                           .copyWith(color: theme.accentColor))
+                                ],
+                              ) : Column(
+                                children: <Widget>[
+                                  Text(this.rencontre.domicile,
+                                      style: theme.textTheme.title
+                                          .copyWith(color: theme.accentColor, fontSize: 30.0))
                                 ],
                               ),
                             ),
@@ -117,13 +123,19 @@ class BasketballItem extends StatelessWidget {
                             ),
                             Expanded(
                               flex: 1,
-                              child: Column(
+                              child: this.rencontre.enCours || this.rencontre.estTerminee ? Column(
                                 children: <Widget>[
                                   Text(this.rencontre.scoreExterieur.toString(),
                                       style: theme.textTheme.display1),
                                   Text(this.rencontre.exterieur,
                                       style: theme.textTheme.title
                                           .copyWith(color: theme.accentColor))
+                                ],
+                              ) : Column(
+                                children: <Widget>[
+                                  Text(this.rencontre.exterieur,
+                                      style: theme.textTheme.title
+                                          .copyWith(color: theme.accentColor, fontSize: 30.0))
                                 ],
                               ),
                             )

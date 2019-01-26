@@ -77,6 +77,13 @@ class ArchSampleLocalizations {
     locale: locale.toString(),
   );
 
+  String get about => Intl.message(
+    'A propos',
+    name: 'about',
+    args: [],
+    locale: locale.toString(),
+  );
+
   String get enCours => Intl.message(
     'En cours',
     name: 'enCours',

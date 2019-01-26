@@ -5,6 +5,9 @@ class ArchSampleKeys {
   // Home Screens
   static final homeScreen = const Key('__homeScreen__');
 
+  // About Screens
+  static final aboutScreen = const Key('__aboutScreen__');
+
   // Football
   static final football = const Key('__football__');
 
