@@ -34,6 +34,7 @@ class FootballListState extends State<FootballList> {
     return ListView(
       children: snapshot.map((data) =>  _buildFootballItem(context, data)).toList(),
     );
+
   }
 
   Widget _buildFootballItem(BuildContext context, DocumentSnapshot data) {

@@ -119,6 +119,20 @@ class ArchSampleLocalizations {
         locale: locale.toString(),
       );
 
+  String get hommes => Intl.message(
+    'Hommes',
+    name: 'hommes',
+    args: [],
+    locale: locale.toString(),
+  );
+
+  String get dames => Intl.message(
+    'Dames',
+    name: 'dames',
+    args: [],
+    locale: locale.toString(),
+  );
+
   String get developerName => Intl.message(
     'MOLOU Yao Clair Samson',
     name: 'developerName',

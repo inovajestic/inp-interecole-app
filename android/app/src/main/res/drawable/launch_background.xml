@@ -13,6 +13,6 @@
     <item>
         <bitmap
             android:gravity="bottom"
-            android:src="@mipmap/ic_inova_launcher" />
+            android:src="@drawable/ic_inova_launcher" />
     </item>
 </layer-list>
