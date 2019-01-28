@@ -14,8 +14,8 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="inp_interecole"
-        android:icon="@mipmap/ic_launcher">
+        android:label="INP INTER-ECOLE"
+        android:icon="@mipmap/ic_inpinterecole_launcher">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
