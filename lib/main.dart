@@ -4,6 +4,7 @@ import 'package:inp_interecole/ui/home_screen.dart';
 import 'package:inp_interecole/ui/about_screen.dart';
 import 'package:inp_interecole/routes.dart';
 import 'package:inp_interecole/interecole.dart';
+import 'package:inp_interecole/app_id.dart' show APP_ID;
 
 
 void main() {

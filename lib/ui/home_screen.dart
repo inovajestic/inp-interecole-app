@@ -10,6 +10,7 @@ import 'package:inp_interecole/widgets/basketball_list.dart';
 import 'package:inp_interecole/widgets/football_list.dart';
 import 'package:inp_interecole/widgets/volleyball_list.dart';
 import 'package:inp_interecole/widgets/handball_list.dart';
+import 'package:inp_interecole/app_id.dart' show APP_ID;
 
 enum TabsDemoStyle {
   iconsAndText,
@@ -47,15 +48,19 @@ class HomeScreenState extends State<HomeScreen>
   bool _customIndicator = false;
   Key _defaultTabKey = ArchSampleKeys.football;
 
+
+
   @override
   void initState() {
     super.initState();
     _controller = TabController(vsync: this, length: _allPages.length);
+
   }
 
   @override
   void dispose() {
     _controller.dispose();
+
     super.dispose();
   }
 
