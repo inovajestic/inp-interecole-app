@@ -10,7 +10,7 @@ import 'package:inp_interecole/widgets/basketball_list.dart';
 import 'package:inp_interecole/widgets/football_list.dart';
 import 'package:inp_interecole/widgets/volleyball_list.dart';
 import 'package:inp_interecole/widgets/handball_list.dart';
-import 'package:inp_interecole/app_id.dart' show APP_ID;
+import 'package:inp_interecole/app_id.dart' show ADMOB_APP_ID;
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:inp_interecole/admob/admob.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -52,19 +52,16 @@ class HomeScreenState extends State<HomeScreen>
   Key _defaultTabKey = ArchSampleKeys.football;
 
   static final MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    testDevices: APP_ID != null ? [APP_ID] : null,
+    testDevices: ADMOB_APP_ID != null ? [ADMOB_APP_ID] : null,
   );
 
   BannerAd bannerAd;
-  InterstitialAd interstitialAd;
-
 
   @override
   void initState() {
     super.initState();
-    FirebaseAdMob.instance.initialize(appId: APP_ID);
+    FirebaseAdMob.instance.initialize(appId: ADMOB_APP_ID);
     bannerAd = AdMob.buildBottomBanner()..load();
-    interstitialAd = AdMob.buildInterstitialAd()..load();
     _controller = TabController(vsync: this, length: _allPages.length);
 
   }
@@ -74,7 +71,6 @@ class HomeScreenState extends State<HomeScreen>
   void dispose() {
     _controller.dispose();
     bannerAd?.dispose();
-    interstitialAd?.dispose();
     super.dispose();
   }
 

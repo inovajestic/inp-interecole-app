@@ -26,7 +26,7 @@ class FootballListState extends State<FootballList> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    interstitialAd = AdMob.buildInterstitialAd()..load();
+    interstitialAd = AdMob.buildFootballInterstitialAd()..load();
   }
 
   @override
@@ -38,9 +38,7 @@ class FootballListState extends State<FootballList> {
 
   @override
   Widget build(BuildContext context) {
-    interstitialAd
-      ..load()
-      ..show();
+    interstitialAd..load()..show();
 
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection('football').snapshots(),
