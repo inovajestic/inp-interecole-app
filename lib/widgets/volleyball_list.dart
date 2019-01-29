@@ -19,13 +19,14 @@ class VolleyballList extends StatefulWidget {
 
 class VolleyballListState extends State<VolleyballList> {
 
+
   InterstitialAd interstitialAd;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    interstitialAd = AdMob.buildInterstitialAd()..load();
+    interstitialAd = AdMob.buildVolleyballInterstitialAd()..load();
   }
 
   @override
@@ -34,8 +35,10 @@ class VolleyballListState extends State<VolleyballList> {
     interstitialAd?.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
+    interstitialAd..load()..show();
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection('volleyball').snapshots(),
       builder: (context, snapshot) {
