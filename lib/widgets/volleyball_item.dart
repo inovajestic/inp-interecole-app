@@ -81,7 +81,7 @@ class VolleyballItem extends StatelessWidget {
                           children: <Widget>[
                             Expanded(
                                 flex: 1,
-                                child: this.rencontre.enCours || this.rencontre.estTerminee ? Column(
+                                child: this.rencontre.enCours ? Column(
                                   children: <Widget>[
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -97,6 +97,22 @@ class VolleyballItem extends StatelessWidget {
                                           this.rencontre.setDomicile.toString(),
                                           style: theme.textTheme.title,
                                         ),
+                                      ],
+                                    ),
+                                    Text(this.rencontre.domicile,
+                                        style: theme.textTheme.title
+                                            .copyWith(color: theme.accentColor))
+                                  ],
+                                ) : this.rencontre.estTerminee ? Column(
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          this.rencontre.setDomicile.toString(),
+                                          style: theme.textTheme.display1,
+                                        ),
+
                                       ],
                                     ),
                                     Text(this.rencontre.domicile,
@@ -126,7 +142,7 @@ class VolleyballItem extends StatelessWidget {
                             ),
                             Expanded(
                                 flex: 1,
-                                child: this.rencontre.enCours || this.rencontre.estTerminee ? Column(
+                                child: this.rencontre.enCours ? Column(
                                   children: <Widget>[
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -140,6 +156,21 @@ class VolleyballItem extends StatelessWidget {
                                         ),
                                         Text(
                                           this.rencontre.scoreExterieur.toString(),
+                                          style: theme.textTheme.display1,
+                                        ),
+                                      ],
+                                    ),
+                                    Text(this.rencontre.exterieur,
+                                        style: theme.textTheme.title
+                                            .copyWith(color: theme.accentColor))
+                                  ],
+                                ) : this.rencontre.estTerminee ? Column(
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          this.rencontre.setExterieur.toString(),
                                           style: theme.textTheme.display1,
                                         ),
                                       ],

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "357769881585-74n8lca6eoq64oit319sfs58tfld2lcj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ci.inovajestic.inpinterecole",
+            "certificate_hash": "b1446bc857795407b018339db298f274890d3b0f"
+          }
+        },
+        {
           "client_id": "357769881585-qgejshbr16o06ai0561o3npet8n9vq1g.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,13 +37,19 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357769881585-qgejshbr16o06ai0561o3npet8n9vq1g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-3732165834293973~6127261599"
     }
   ],
   "configuration_version": "1"
