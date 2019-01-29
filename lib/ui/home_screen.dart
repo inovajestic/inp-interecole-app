@@ -11,6 +11,9 @@ import 'package:inp_interecole/widgets/football_list.dart';
 import 'package:inp_interecole/widgets/volleyball_list.dart';
 import 'package:inp_interecole/widgets/handball_list.dart';
 import 'package:inp_interecole/app_id.dart' show APP_ID;
+import 'package:firebase_admob/firebase_admob.dart';
+import 'package:inp_interecole/admob/admob.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 enum TabsDemoStyle {
   iconsAndText,
@@ -48,21 +51,33 @@ class HomeScreenState extends State<HomeScreen>
   bool _customIndicator = false;
   Key _defaultTabKey = ArchSampleKeys.football;
 
+  static final MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+    testDevices: APP_ID != null ? [APP_ID] : null,
+  );
+
+  BannerAd bannerAd;
+  InterstitialAd interstitialAd;
 
 
   @override
   void initState() {
     super.initState();
+    FirebaseAdMob.instance.initialize(appId: APP_ID);
+    bannerAd = AdMob.buildBottomBanner()..load();
+    interstitialAd = AdMob.buildInterstitialAd()..load();
     _controller = TabController(vsync: this, length: _allPages.length);
 
   }
 
+
   @override
   void dispose() {
     _controller.dispose();
-
+    bannerAd?.dispose();
+    interstitialAd?.dispose();
     super.dispose();
   }
+
 
   Decoration getIndicator() {
     if (!_customIndicator)
@@ -122,7 +137,10 @@ class HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-
+    bannerAd
+      ..load()
+      ..show();
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(BlocLocalizations.of(context).appTitle),
@@ -136,18 +154,36 @@ class HomeScreenState extends State<HomeScreen>
         ),
         actions: <Widget>[
           IconButton(
+            icon: Icon(Icons.favorite,
+                semanticLabel: ArchSampleLocalizations.of(context).about,
+                color: Colors.red),
+            onPressed: () {
+              final DocumentReference likeRef = Firestore.instance.document('likes/qspixyugPrsXeBqkiObK');
+              Firestore.instance.runTransaction((Transaction tx) async {
+                DocumentSnapshot postSnapshot = await tx.get(likeRef);
+                if (postSnapshot.exists) {
+                  await tx.update(likeRef, <String, dynamic>{'likesCount': postSnapshot.data['likesCount'] + 1});
+                }
+              });
+            }
+          ),
+          IconButton(
             icon: Icon(Icons.help,
                 semanticLabel: ArchSampleLocalizations.of(context).about,
                 color: Colors.white),
             onPressed: () {
               Navigator.pushNamed(context, ArchSampleRoutes.about);
             },
-          )
+          ),
+
+
+
         ],
       ),
       body: TabBarView(
           controller: _controller,
           children: _allPages.map<Widget>((_Page page) {
+
             if (page.key == ArchSampleKeys.football)
               return new FootballList(key: ArchSampleKeys.football);
             else if (page.key == ArchSampleKeys.basketball)

@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inp_interecole/widgets/basketball_item.dart';
 import 'package:inp_interecole/widgets/loading.dart';
 import 'package:inp_interecole/models/basketball.dart';
+import 'package:firebase_admob/firebase_admob.dart';
+import 'package:inp_interecole/admob/admob.dart';
 
 class BasketballList extends StatefulWidget {
 
@@ -18,6 +20,22 @@ class BasketballList extends StatefulWidget {
 
 class BasketballListState extends State<BasketballList> {
 
+  InterstitialAd interstitialAd;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    interstitialAd = AdMob.buildInterstitialAd()..load();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    interstitialAd?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -32,6 +50,7 @@ class BasketballListState extends State<BasketballList> {
 
   Widget _buildBasketballList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return ListView(
+      padding: EdgeInsets.only(bottom: 60.0),
       children: snapshot.map((data) =>  _buildBasketballItem(context, data)).toList(),
     );
   }
