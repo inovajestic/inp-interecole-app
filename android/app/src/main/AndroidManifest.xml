@@ -18,7 +18,7 @@
         android:label="INP Inter-École"
         android:icon="@drawable/ic_inpinterecole_launcher">
         <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3732165834293973~6127261599" />
+            android:value="ca-app-pub-5284743130527630~9809509824" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
